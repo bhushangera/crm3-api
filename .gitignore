@@ -1,0 +1,14 @@
+.DS_Store
+node_modules
+.tmp
+.idea
+.log
+.zip
+dist
+docs
+npm-debug.log
+.nyc_output
+coverage
+cassettes
+app.json
+pm2.json

@@ -1,0 +1,36 @@
+import { success, notFound } from '../../services/response/'
+import { Regions } from '.'
+
+export const create = ({ bodymen: { body } }, res, next) =>
+  Regions.create(body)
+    .then((regions) => regions.view(true))
+    .then(success(res, 201))
+    .catch(next)
+
+export const index = ({ querymen: { query, select } }, res, next) =>
+  Regions.find(query, select)
+    .then((regions) => regions.map((regions) => regions.view()))
+    .then(success(res))
+    .catch(next)
+
+export const show = ({ params }, res, next) =>
+  Regions.findById(params.id)
+    .then(notFound(res))
+    .then((regions) => regions ? regions.view() : null)
+    .then(success(res))
+    .catch(next)
+
+export const update = ({ bodymen: { body }, params }, res, next) =>
+  Regions.findById(params.id)
+    .then(notFound(res))
+    .then((regions) => regions ? Object.assign(regions, body).save() : null)
+    .then((regions) => regions ? regions.view(true) : null)
+    .then(success(res))
+    .catch(next)
+
+export const destroy = ({ params }, res, next) =>
+  Regions.findById(params.id)
+    .then(notFound(res))
+    .then((regions) => regions ? regions.remove() : null)
+    .then(success(res, 204))
+    .catch(next)
