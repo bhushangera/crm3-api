@@ -96,7 +96,9 @@ export const BlocksSchema = new Schema({
 })
 const quotationsSchema = new Schema(
   {
+    scrollNo: {type: Number},
     sNo: {type: Number},
+    originalSNo: {type: Number, default: 0},
     counterId: { type: String, trim: true },
     uuid: { type: String, trim: true },
     buId: { type: String, trim: true },
@@ -217,6 +219,7 @@ quotationsSchema.methods = {
       // simple view
       id: this.id,
       sNo: this.sNo,
+      originalSNo: this.originalSNo,
       counterId: this.counterId,
       uuid: this.uuid,
       buId: this.buId,

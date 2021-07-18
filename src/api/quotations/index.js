@@ -8,6 +8,7 @@ export Quotations, { schema } from './model'
 const router = new Router()
 const {
   sNo,
+  originalSNo,
   counterId,
   uuid,
   buId,
@@ -94,6 +95,7 @@ router.post(
   '/',
   body({
     sNo,
+    originalSNo,
     counterId,
     uuid,
     buId,
@@ -203,6 +205,7 @@ router.put(
   '/:id',
   body({
     sNo,
+    originalSNo,
     counterId,
     uuid,
     buId,
