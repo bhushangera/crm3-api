@@ -1,6 +1,8 @@
 import mongoose, { Schema } from 'mongoose'
 import { addressSchema } from '../employees/model'
 import Entities from '../entities/model'
+var autoIncrement = require('mongoose-auto-increment')
+
 // import EntityCategory from '../entityCategory/model'
 // import CategoryCodes from '../CategoryCodes/model'
 
@@ -60,6 +62,8 @@ export const commercialsSchema = new Schema({
 
 const piSchema = new Schema({
   uuid: { type: String, trim: true },
+  sNo: {type: Number},
+  originalSNo: {type: Number},
   // bu: BusinessUnits.schema,
   buId: { type: String, trim: true },
   entityId: { type: String, trim: true },
@@ -147,13 +151,19 @@ const piSchema = new Schema({
     transform: (obj, ret) => { delete ret._id }
   }
 })
-
+piSchema.plugin(autoIncrement.plugin, {
+  model: 'Pis',
+  field: 'sNo',
+  startAt: 1
+})
 piSchema.methods = {
   view (full) {
     const view = {
       // simple view
       id: this.id,
       uuid: this.uuid,
+      sNo: this.sNo,
+      originalSNo: this.originalSNo,
       buId: this.buId,
       // bu: this.bu,
       entityId: this.entityId,

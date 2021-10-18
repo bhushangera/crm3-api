@@ -59,13 +59,15 @@ export const moduleProsSchema = new Schema({
 })
 export const hwBundleSchema = new Schema({
   itemNo: { type: Number, default: 0 },
-  categoryCodeId: { type: String, trim: true },
+  categoryId: { type: String, trim: true },
   hwPackId: { type: String, trim: true },
+  makeId: { type: String, trim: true },
   code: { type: String, trim: true },
   description: { type: String, trim: true },
-  makeId: { type: String, trim: true },
   makeCode: { type: String, trim: true },
-  qty: { type: Number, default: 1 }
+  qty: { type: Number, default: 1 },
+  categoryCodeId: { type: String, trim: true },
+  image: { type: String, trim: true }
 })
 export const modulePartSchema = new Schema({
   itemNo: { type: Number, default: 0 },

@@ -9,6 +9,8 @@ const router = new Router()
 const {
   uuid,
   buId,
+  sNo,
+  originalSNo,
   // bu,
   entityId,
   entityCode,
@@ -73,6 +75,8 @@ router.post(
   body({
     uuid,
     buId,
+    sNo,
+    originalSNo,
     // bu,
     entityId,
     entityCode,
@@ -146,6 +150,8 @@ router.put(
   body({
     uuid,
     buId,
+    sNo,
+    originalSNo,
     // bu,
     entityId,
     entityCode,
