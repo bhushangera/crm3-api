@@ -79,6 +79,7 @@ export const materialsSchema = new Schema(
 
     cabinatoryParameters: {
       classification: { type: String, trim: true }, // carcass/shutter/drw/tandem/shelf/dummy;
+      skipMounting: {type: Boolean, defalut: false},
       carcass: {
         unitType: { type: String, trim: true, default: 'std' }, // std, l-corner, b-clorner, s-corner,
         instType: { type: String, trim: true, default: 'base' },

@@ -6,43 +6,43 @@ import { schema } from './model'
 export OperativeFactors, { schema } from './model'
 
 const router = new Router()
-const { code, uuid, entityId,
+const {
+  entityId,
   entityCode,
   categoryId,
   category,
   categoryCodeId,
   categoryCode,
+  code,
+  uuid,
   description,
-  forexFactor,
-  exportFactor,
-  overheads,
-  packaging,
-  production,
-  operativeMargin,
+  productionCostPSF,
+  productionCostPP,
+  packingFactor,
   dealerFactor,
   retailFactor,
-  totalDomestic,
-  totalExport, active } = schema.tree
+  exportFactor,
+  active
+} = schema.tree
 
 router.post('/',
   body({
-    code, uuid, entityId,
+    entityId,
     entityCode,
     categoryId,
     category,
     categoryCodeId,
     categoryCode,
+    code,
+    uuid,
     description,
-    forexFactor,
-    exportFactor,
-    overheads,
-    packaging,
-    production,
-    operativeMargin,
+    productionCostPSF,
+    productionCostPP,
+    packingFactor,
     dealerFactor,
     retailFactor,
-    totalDomestic,
-    totalExport, active
+    exportFactor,
+    active
   }),
   create)
 
@@ -58,23 +58,22 @@ router.get('/:id',
 
 router.put('/:id',
   body({
-    code, uuid, entityId,
+    entityId,
     entityCode,
     categoryId,
     category,
     categoryCodeId,
     categoryCode,
+    code,
+    uuid,
     description,
-    forexFactor,
-    exportFactor,
-    overheads,
-    packaging,
-    production,
-    operativeMargin,
+    productionCostPSF,
+    productionCostPP,
+    packingFactor,
     dealerFactor,
     retailFactor,
-    totalDomestic,
-    totalExport, active
+    exportFactor,
+    active
   }),
   update)
 

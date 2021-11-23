@@ -31,6 +31,50 @@ export const skuDetailsSchema = new Schema({
   effThickness: { type: Number, default: 0 },
   sqft: { type: Number, default: 0 }
 })
+const carcassRetesSchema = new Schema({
+  mechanism: { type: String, default: 'psf' }, // psf,pp
+  psfRate: { type: Number, default: 100 },
+  psfDealerRate: { type: Number, default: 125 },
+  psfRetailRate: { type: Number, default: 0 },
+  ppBaseRate: { type: Number, default: 0 },
+  ppBaseDealerRate: { type: Number, default: 0 },
+  ppBaseRetailRate: { type: Number, default: 0 },
+  ppBackRate: { type: Number, default: 0 },
+  ppBackDealerRate: { type: Number, default: 0 },
+  ppBackRetailRate: { type: Number, default: 0 },
+  stdWidth: { type: Number, default: 600 },
+  widthPlus: { type: Number, default: 10 },
+  shelfRate: { type: Number, default: 0 },
+  splBackPlus: { type: Number, default: 0 },
+  drwHeight: { type: Number, default: 300 },
+  drwHTPlus: { type: Number, default: 0 },
+  drawerUnit: { type: String, trim: true, default: 'each' },
+  drwRate600: { type: Number, default: 1000 },
+  drwRate900: { type: Number, default: 1500 },
+  drwRate1200: { type: Number, default: 2000 },
+  stripRate: { type: Number, default: 100 },
+  billingUnit: { type: String, trim: true },
+  stripUnit: { type: String, trim: true, default: 'rft' },
+  hlPlus: { type: Number, default: 50 },
+  rawBoard: { type: Number, default: 0 },
+  stripWidth: { type: Number, default: 100 }
+})
+const shutterRatesSchema = new Schema({
+  baseRate: {type: Number, default: 0},
+  dealerRate: {type: Number, default: 0},
+  retailRate: {type: Number, default: 0},
+  exposedSide: { type: Number, default: 0 },
+  cncDesign: { type: Number, default: 0 },
+  cncHandleStd: { type: Number, default: 0 },
+  cncHandlePremium: { type: Number, default: 0 },
+  SBSLPlus: { type: Number, default: 0 },
+  EPHStd: { type: Number, default: 0 },
+  EPHPremium: { type: Number, default: 0 },
+  premiumTape: { type: Number, default: 0 },
+  PWEdgeStd: { type: Number, default: 0 },
+  PWEdgePremium: { type: Number, default: 0 },
+  premiumProfile: { type: Number, default: 0 }
+})
 const carcassSchema = new Schema({
   lamination: { type: String, trim: true },
   laminationType: { type: String, trim: true },
@@ -72,23 +116,7 @@ const carcassSchema = new Schema({
   glassSKU: skuDetailsSchema,
 
   baseThickness: { type: Number, default: 0 },
-  backThickness: { type: Number, default: 0 },
-
-  stdWidth: { type: Number, default: 600 },
-  widthPlus: { type: Number, default: 10 },
-  shelfRate: { type: Number, default: 0 },
-  splBackPlus: { type: Number, default: 0 },
-  drwHeight: { type: Number, default: 300 },
-  drwHTPlus: { type: Number, default: 0 },
-  drawerUnit: { type: String, trim: true, default: 'each' },
-  drwRate900: { type: Number, default: 0 },
-  drwRate1200: { type: Number, default: 0 },
-  stripRate: { type: Number, default: 0 },
-  billingUnit: { type: String, trim: true },
-  stripUnit: { type: String, trim: true, default: 'rft' },
-  hlPlus: { type: Number, default: 50 },
-  rawBoard: { type: Number, default: 0 },
-  stripWidth: { type: Number, default: 100 }
+  backThickness: { type: Number, default: 0 }
 })
 
 const shutterSchema = new Schema({
@@ -157,20 +185,9 @@ const shutterSchema = new Schema({
   backCoatSKUId: { type: String, trim: true },
 
   shutterThickness: { type: Number, default: 0 },
-  frameWidth: { type: Number, default: 0 },
+  frameWidth: { type: Number, default: 0 }
   // riders
-  exposedSide: { type: Number, default: 0 },
-  exposedPanel: { type: Number, default: 0 },
-  cncDesign: { type: Number, default: 0 },
-  cncHandleStd: { type: Number, default: 0 },
-  cncHandlePremium: { type: Number, default: 0 },
-  SBSLPlus: { type: Number, default: 0 },
-  EPHStd: { type: Number, default: 0 },
-  EPHPremium: { type: Number, default: 0 },
-  premiumTape: { type: Number, default: 0 },
-  PWEdgeStd: { type: Number, default: 0 },
-  PWEdgePremium: { type: Number, default: 0 },
-  premiumProfile: { type: Number, default: 0 }
+
 })
 
 const moduleVariantSchema = new Schema(
@@ -193,9 +210,8 @@ const moduleVariantSchema = new Schema(
     costing: { type: Number, default: 0 }, // base raw material cost
     operativeFactorId: { type: String, trim: true },
     operativeFactor: OperativeFactors.schema,
-    baseRate: { type: String, trim: true },
-    dealerRate: { type: String, trim: true },
-    retailRate: { type: String, trim: true },
+    carcassRates: carcassRetesSchema,
+    shutterRates: shutterRatesSchema,
     billingUnit: { type: String, trim: true },
     // carcass
     carcass: carcassSchema,
@@ -230,16 +246,12 @@ moduleVariantSchema.methods = {
       code: this.code,
       description: this.description,
       remarks: this.remarks,
-      // image: this.// image,
       active: this.active,
-      costing: this.costing,
       operativeFactorId: this.operativeFactorId,
       operativeFactor: this.operativeFactor,
-      baseRate: this.baseRate,
-      dealerRate: this.dealerRate,
-      retailRate: this.retailRate,
+      carcassRates: this.carcassRates,
+      shutterRates: this.shutterRates,
       billingUnit: this.billingUnit,
-      // carcass
       carcass: this.carcass,
       shutter: this.shutter,
       createdAt: this.createdAt,

@@ -21,8 +21,7 @@ const skuDetailsSchema = new Schema({
   purchasePrice: { type: Number, default: 0 }
 })
 const piCarcaseSchema = new Schema({
-  // id: { type: String },
-  // id: { type: String, trim: true },
+
   piId: { type: String, trim: true },
   itemNo: { type: Number, default: 0 },
   categoryCodeId: { type: String, trim: true },
@@ -30,12 +29,19 @@ const piCarcaseSchema = new Schema({
   code: { type: String, trim: true },
   description: { type: String, trim: true },
   image: { type: String, trim: true },
-  baseRate: { type: Number, default: 0 },
+
   operativeFactorId: { type: String, trim: true },
   factor: { type: Number, default: 0 },
-  rate: { type: Number, default: 0 },
+
+  mechanism: { type: String, trim: true },
+  psfFactoryRate: { type: String, trim: true },
+  psfRate: { type: Number, default: 0 },
+  ppBaseFactroyRate: { type: Number, default: 0 },
+  ppBackFactroyRate: { type: Number, default: 0 },
+  ppBaseRate: { type: Number, default: 0 },
+  ppBackRate: { type: Number, default: 0 },
   billingUnit: { type: String, trim: true },
-  // carcass variant details
+  // riders
   stdWidth: { type: Number, default: 0 },
   widthPlus: { type: Number, default: 0 },
   shelfRate: { type: Number, default: 0 },
@@ -43,13 +49,16 @@ const piCarcaseSchema = new Schema({
   drwHeight: { type: Number, default: 0 },
   drwHTPlus: { type: Number, default: 0 },
   drawerUnit: { type: String, trim: true },
+  drwRate600: { type: Number, default: 0 },
   drwRate900: { type: Number, default: 0 },
   drwRate1200: { type: Number, default: 0 },
   stripRate: { type: Number, default: 0 },
+  drwBillingUnit: { type: String, trim: true },
   stripUnit: { type: String, trim: true },
   hlPlus: { type: Number, default: 0 },
   rawBoard: { type: Number, default: 0 },
   stripWidth: { type: Number, default: 0 },
+
   baseThickness: { type: Number, default: 0 },
   backThickness: { type: Number, default: 0 },
 
@@ -100,8 +109,8 @@ const piCarcaseSchema = new Schema({
 
   handleLess: { type: Boolean, default: false },
   handleLessWall: { type: Boolean, default: false },
-  ohpAdj: {type: Number, defult: 0},
-  sideAdj: {type: Number, defult: 0}
+  ohpAdj: { type: Number, defult: 0 },
+  sideAdj: { type: Number, defult: 0 }
 }, {
   timestamps: true,
   toJSON: {
@@ -121,13 +130,19 @@ piCarcaseSchema.methods = {
       categoryCodeId: this.categoryCodeId,
       moduleVariantId: this.moduleVariantId,
       code: this.code,
-      description: this.description,
       image: this.image,
-      baseRate: this.baseRate,
+      description: this.description,
       operativeFactorId: this.operativeFactorId,
       factor: this.factor,
-      rate: this.rate,
+      mechanism: this.mechanism,
+      psfFactoryRate: this.psfFactoryRate,
+      psfRate: this.psfRate,
+      ppBaseFactroyRate: this.ppBaseFactroyRate,
+      ppBackFactroyRate: this.ppBackFactroyRate,
+      ppBaseRate: this.ppBaseRate,
+      ppBackRate: this.ppBackRate,
       billingUnit: this.billingUnit,
+      // riders
       stdWidth: this.stdWidth,
       widthPlus: this.widthPlus,
       shelfRate: this.shelfRate,
@@ -135,9 +150,11 @@ piCarcaseSchema.methods = {
       drwHeight: this.drwHeight,
       drwHTPlus: this.drwHTPlus,
       drawerUnit: this.drawerUnit,
+      drwRate600: this.drwRate600,
       drwRate900: this.drwRate900,
       drwRate1200: this.drwRate1200,
       stripRate: this.stripRate,
+      drwBillingUnit: this.drwBillingUnit,
       stripUnit: this.stripUnit,
       hlPlus: this.hlPlus,
       rawBoard: this.rawBoard,

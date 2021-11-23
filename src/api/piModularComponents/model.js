@@ -50,12 +50,12 @@ const piModularComponentsSchema = new Schema({
   carcassColor: { type: String, trim: true }, // shutter, carcass
   frontEdgeColor: { type: String, trim: true }, // shutter, carcass
   // exposedVariant: { type: Number, default: 0 },
-  topExposed: { type: String, trim: true },
-  bottomExposed: { type: String, trim: true },
-  leftExposed: { type: String, trim: true },
-  rightExposed: { type: String, trim: true },
-  backExposed: { type: String, trim: true },
-  shelfExposed: { type: String, trim: true },
+  topExposed: { type: Boolean, default: false },
+  bottomExposed: { type: Boolean, default: false },
+  leftExposed: { type: Boolean, default: false },
+  rightExposed: { type: Boolean, default: false },
+  backExposed: { type: Boolean, default: false },
+  shelfExposed: { type: Boolean, default: false },
 
   hasDrawer: { type: Boolean, default: false },
   hasHinges: { type: Boolean, default: false },

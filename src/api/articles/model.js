@@ -120,7 +120,8 @@ export const componentModuleSchema = new Schema({
   isFOC: { type: Boolean, default: false },
   ccD: { type: Boolean, default: false },
   ccW: { type: Boolean, default: false },
-  ccH: { type: Boolean, default: false }
+  ccH: { type: Boolean, default: false },
+  handleLocation: { type: String, default: 'width' }
 })
 const articlesSchema = new Schema(
   {
