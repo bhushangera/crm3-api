@@ -79,7 +79,7 @@ export const materialsSchema = new Schema(
 
     cabinatoryParameters: {
       classification: { type: String, trim: true }, // carcass/shutter/drw/tandem/shelf/dummy;
-      skipMounting: {type: Boolean, defalut: false},
+      skipMounting: { type: Boolean, defalut: false },
       carcass: {
         unitType: { type: String, trim: true, default: 'std' }, // std, l-corner, b-clorner, s-corner,
         instType: { type: String, trim: true, default: 'base' },
@@ -88,7 +88,10 @@ export const materialsSchema = new Schema(
         joinery: { type: String, trim: true },
         hlBase: { type: Boolean, default: false },
         hlWall: { type: Boolean, default: false },
-        hlTall: { type: Boolean, default: false }
+        hlTall: { type: Boolean, default: false },
+        dadoArea: { type: Number, default: 600 },
+        counterTop: { type: Number, default: 40 },
+        includeCTinDADO: { type: Boolean, default: true }
       },
       shutter: {
         classification: { type: String, trim: true }, // laminated , painted, glazed

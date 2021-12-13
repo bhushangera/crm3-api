@@ -5,8 +5,11 @@ export const compProsSchema = new Schema({
   channelLength: { type: Number, default: 450 },
   tandemLength: { type: Number, default: 470 },
   leg: { type: Number, default: 4 },
+  leg900: { type: Number, default: 6 },
   bracket: { type: Number, default: 2 },
-  hinges: { type: Number, default: 2 },
+  hinges: { type: Number, default: 1 },
+  apertureHeight: {type: Number, default: 600},
+  lowerShutterHeight: {type: Number, default: 0},
   height: {
     fixed: { type: Boolean, default: false },
     min: { type: Number, default: 300 },
@@ -160,6 +163,7 @@ const articlesSchema = new Schema(
     hasAppliances: { type: Boolean, default: false },
     hasFittings: { type: Boolean, default: false },
     hasBifoldShutter: { type: Boolean, default: false },
+    isAHU: { type: Boolean, default: false },
     shutterType: { type: String, default: 'flat' }
   },
   {
@@ -213,6 +217,7 @@ articlesSchema.methods = {
       hasAppliances: this.hasAppliances,
       hasFittings: this.hasFittings,
       hasBifoldShutter: this.hasBifoldShutter,
+      isAHU: this.isAHU,
       shutterType: this.shutterType,
       createdAt: this.createdAt,
       updatedAt: this.updatedAt

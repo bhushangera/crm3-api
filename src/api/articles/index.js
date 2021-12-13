@@ -36,7 +36,7 @@ const {
   hasDrawers,
   hasHinges,
   hasAppliances,
-  hasFittings, hasBifoldShutter, shutterType
+  hasFittings, hasBifoldShutter, isAHU, shutterType
 } = schema.tree
 
 router.post(
@@ -74,6 +74,7 @@ router.post(
     hasAppliances,
     hasFittings,
     hasBifoldShutter,
+    isAHU,
     shutterType
   }),
   create
@@ -118,6 +119,7 @@ router.put(
     hasAppliances,
     hasFittings,
     hasBifoldShutter,
+    isAHU,
     shutterType
   }),
   update
