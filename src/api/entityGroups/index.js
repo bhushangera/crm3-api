@@ -1,11 +1,11 @@
-import { Router } from "express";
-import { middleware as query } from "querymen";
-import { middleware as body } from "bodymen";
-import { create, index, show, update, destroy } from "./controller";
-import { schema } from "./model";
-export EntityGroups, { schema } from "./model";
+import { Router } from 'express'
+import { middleware as query } from 'querymen'
+import { middleware as body } from 'bodymen'
+import { create, index, show, update, destroy } from './controller'
+import { schema } from './model'
+export EntityGroups, { schema } from './model'
 
-const router = new Router();
+const router = new Router()
 const {
   code,
   uuid,
@@ -17,11 +17,11 @@ const {
   foreground,
   groupType,
   image,
-  active,
-} = schema.tree;
+  active, componentStandards
+} = schema.tree
 
 router.post(
-  "/",
+  '/',
   body({
     code,
     uuid,
@@ -34,16 +34,17 @@ router.post(
     groupType,
     image,
     active,
+    componentStandards
   }),
   create
-);
+)
 
-router.get("/", query(), index);
+router.get('/', query(), index)
 
-router.get("/:id", show);
+router.get('/:id', show)
 
 router.put(
-  "/:id",
+  '/:id',
   body({
     code,
     uuid,
@@ -56,10 +57,11 @@ router.put(
     groupType,
     image,
     active,
+    componentStandards
   }),
   update
-);
+)
 
-router.delete("/:id", destroy);
+router.delete('/:id', destroy)
 
-export default router;
+export default router

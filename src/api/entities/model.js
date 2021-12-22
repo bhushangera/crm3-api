@@ -1,4 +1,4 @@
-import mongoose, { Schema } from "mongoose";
+import mongoose, { Schema } from 'mongoose'
 import TaxRates from '../taxRates/model'
 
 const entitiesSchema = new Schema(
@@ -20,24 +20,30 @@ const entitiesSchema = new Schema(
     definition: { type: String, trim: true },
     notes: { type: String, trim: true },
     terms: { type: String, trim: true },
-    unit: {type: String, trim: true},
-    calculate: {type: Boolean, default: false},
-    taxId: {type: String, trim: true},
-    tax: TaxRates.schema
+    unit: { type: String, trim: true },
+    calculate: { type: Boolean, default: false },
+    taxId: { type: String, trim: true },
+    tax: TaxRates.schema,
+    componentStandards: {
+      bcHeight: {type: Number, default: 0},
+      wcHeight: {type: Number, default: 0},
+      bcDepth: {type: Number, default: 0},
+      wcDepth: {type: Number, default: 0}
+    }
   },
   {
     timestamps: true,
     toJSON: {
       virtuals: true,
       transform: (obj, ret) => {
-        delete ret._id;
-      },
-    },
+        delete ret._id
+      }
+    }
   }
-);
+)
 
 entitiesSchema.methods = {
-  view(full) {
+  view (full) {
     const view = {
       // simple view
       id: this.id,
@@ -62,20 +68,21 @@ entitiesSchema.methods = {
       calculate: this.calculate,
       taxId: this.taxId,
       tax: this.tax,
+      componentStandards: this.componentStandards,
       createdAt: this.createdAt,
-      updatedAt: this.updatedAt,
-    };
+      updatedAt: this.updatedAt
+    }
 
     return full
       ? {
-          ...view,
-          // add properties for a full view
-        }
-      : view;
-  },
-};
+        ...view
+        // add properties for a full view
+      }
+      : view
+  }
+}
 
-const model = mongoose.model("Entities", entitiesSchema);
+const model = mongoose.model('Entities', entitiesSchema)
 
-export const schema = model.schema;
-export default model;
+export const schema = model.schema
+export default model

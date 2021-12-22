@@ -61,6 +61,7 @@ const carcassRetesSchema = new Schema({
 })
 const shutterRatesSchema = new Schema({
   baseRate: {type: Number, default: 0},
+  factoryRate: {type: Number, default: 0},
   dealerRate: {type: Number, default: 0},
   retailRate: {type: Number, default: 0},
   exposedSide: { type: Number, default: 0 },
