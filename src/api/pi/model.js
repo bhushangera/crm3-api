@@ -109,6 +109,7 @@ const piSchema = new Schema({
   archive: { type: Boolean, default: false },
 
   partyId: { type: String, trim: true },
+  partyDetails: {type: String, trim: true},
   // partyDetails: Parties.schema,
   GSTIN: { type: String, trim: true },
   isDealer: { type: Boolean, default: false },
@@ -154,7 +155,7 @@ const piSchema = new Schema({
 piSchema.plugin(autoIncrement.plugin, {
   model: 'Pis',
   field: 'sNo',
-  startAt: 1
+  startAt: 101
 })
 piSchema.methods = {
   view (full) {
@@ -203,7 +204,7 @@ piSchema.methods = {
       remarks: this.remarks,
       archive: this.archive,
       partyId: this.partyId,
-      // partyDetails: this.partyDetails,
+      partyDetails: this.partyDetails,
       isDealer: this.isDealer,
       GSTIN: this.GSTIN,
       cartage: this.cartage,

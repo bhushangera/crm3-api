@@ -100,7 +100,8 @@ export const modulePartSchema = new Schema({
   dAdjustment: { type: Number, default: 0 },
 
   hinge: { type: Boolean, default: false },
-  handle: { type: Boolean, default: false }
+  handle: { type: Boolean, default: false },
+  skipCL: {type: Boolean, default: false}
   // hingleLocation: { type: String, trim: true } // LH, RH
 })
 export const componentModuleSchema = new Schema({

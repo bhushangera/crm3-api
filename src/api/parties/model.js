@@ -1,16 +1,12 @@
-import mongoose, { Schema } from "mongoose";
-import Entities from "../entities/model";
-import EntityState from "../entityState/model";
-import EntityCategory from "../entityCategory/model";
-import CategoryCodes from "../CategoryCodes/model";
-import StatusCodes from "../statusCodes/model";
+import mongoose, { Schema } from 'mongoose'
+import EntityCategory from '../entityCategory/model'
 // loacations related models
-import Countries from "../countries/model";
-import States from "../states/model";
-import Cities from "../cities/model";
-import Territories from "../territories/model";
-import {employeeDetailsSchema} from '../employees/model';
-import Teams from '../Teams/model';
+import Countries from '../countries/model'
+import States from '../states/model'
+import Cities from '../cities/model'
+import Territories from '../territories/model'
+import {employeeDetailsSchema} from '../employees/model'
+import Teams from '../Teams/model'
 
 const addressSchema = new Schema({
   addressCategory: EntityCategory.schema,
@@ -28,9 +24,9 @@ const addressSchema = new Schema({
   // zip code
   pinCode: { type: Number, default: 0 },
   isPrimary: { type: Boolean, default: false },
-  territory: Territories.schema,
+  territory: Territories.schema
 
-});
+})
 const commercialSchema = new Schema({
   GSTIN: { type: String, trim: true },
   PAN: { type: String, trim: true },
@@ -41,12 +37,12 @@ const commercialSchema = new Schema({
   IFSC: { type: String, trim: true },
   bankBranch: { type: String, trim: true },
   MICR: { type: String, trim: true },
-  branchAddress: { type: String, trim: true },
-});
+  branchAddress: { type: String, trim: true }
+})
 const creditLimitSchema = new Schema({
   creditLimit: { type: Number, default: 0 },
-  creditDays: { type: Number, default: 0 },
-});
+  creditDays: { type: Number, default: 0 }
+})
 // main schema
 const partiesSchema = new Schema(
   {
@@ -97,6 +93,7 @@ const partiesSchema = new Schema(
     hasCreditLimit: { type: Boolean, default: false },
     billingAddress: addressSchema,
     shippingAddress: addressSchema,
+    sameAddress: {type: Boolean, default: false},
     commercials: commercialSchema,
     creditLimit: creditLimitSchema,
     address: [addressSchema],
@@ -107,14 +104,14 @@ const partiesSchema = new Schema(
     toJSON: {
       virtuals: true,
       transform: (obj, ret) => {
-        delete ret._id;
-      },
-    },
+        delete ret._id
+      }
+    }
   }
-);
+)
 
 partiesSchema.methods = {
-  view(full) {
+  view (full) {
     const view = {
       id: this.id,
       uuid: this.uuid,
@@ -165,23 +162,24 @@ partiesSchema.methods = {
       hasCreditLimit: this.hasCreditLimit,
       billingAddress: this.billingAddress,
       shippingAddress: this.shippingAddress,
+      sameAddress: this.sameAddress,
       commercials: this.commercials,
       creditLimit: this.creditLimit,
       isDealer: this.isDealer,
       createdAt: this.createdAt,
-      updatedAt: this.updatedAt,
-    };
+      updatedAt: this.updatedAt
+    }
 
     return full
       ? {
-          ...view,
-          // add properties for a full view
-        }
-      : view;
-  },
-};
+        ...view
+        // add properties for a full view
+      }
+      : view
+  }
+}
 
-const model = mongoose.model("Parties", partiesSchema);
+const model = mongoose.model('Parties', partiesSchema)
 
-export const schema = model.schema;
-export default model;
+export const schema = model.schema
+export default model
