@@ -33,17 +33,20 @@ const config = {
     mongo: {
       options: {
         db: {
-          safe: true
+          safe: true,
+          useNewUrlParser: true,
+          useUnifiedTopology: true
         }
       }
     }
   },
-  test: { },
+  test: {},
   development: {
     mongo: {
       uri: process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/fusion',
       options: {
-        debug: true
+        debug: true,
+
       }
     }
   },
@@ -51,7 +54,9 @@ const config = {
     ip: process.env.IP || undefined,
     port: process.env.PORT || 8080,
     mongo: {
-      uri: process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/fusion'
+      uri: process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/fusion',
+
+
     }
   }
 }

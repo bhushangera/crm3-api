@@ -104,6 +104,7 @@ const piSchema = new Schema({
   campaignId: { type: String, trim: true },
 
   itemId: { type: String, trim: true },
+  itemCode: { type: String, trim: true, default: 'mk' },
   item: Entities.schema,
   remarks: { type: String, trim: true },
   archive: { type: Boolean, default: false },
@@ -200,6 +201,7 @@ piSchema.methods = {
       leadId: this.leadId,
       campaignId: this.campaignId,
       itemId: this.itemId,
+      itemCode: this.itemCode,
       item: this.item,
       remarks: this.remarks,
       archive: this.archive,
